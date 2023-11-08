@@ -1,12 +1,13 @@
 package com.Wanderlust.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Entity
 @Getter
@@ -15,10 +16,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Itinerary {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer itineraryID;
-    private String activity;
+    private Date startDate;
+    private Date endDate;
     private String location;
     private String description;
-
-
+    @ManyToOne(cascade=CascadeType.ALL)
+    private Destination destination;
+    @ManyToOne
+    private User user;
 }
