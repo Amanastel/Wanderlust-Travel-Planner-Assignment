@@ -1,6 +1,7 @@
 package com.Wanderlust.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +25,9 @@ public class Itinerary {
     private String description;
     private Double budget;
     @ManyToOne(cascade=CascadeType.ALL)
+    @JsonIgnore
     private Destination destination;
     @ManyToOne
+    @JsonIgnore
     private User user;
 }

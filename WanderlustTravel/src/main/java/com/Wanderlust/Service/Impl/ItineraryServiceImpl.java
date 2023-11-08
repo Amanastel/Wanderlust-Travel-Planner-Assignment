@@ -1,7 +1,9 @@
 package com.Wanderlust.Service.Impl;
 import com.Wanderlust.Exception.ItineraryException;
 import com.Wanderlust.Model.Itinerary;
+import com.Wanderlust.Model.User;
 import com.Wanderlust.Repository.ItineraryRepository;
+import com.Wanderlust.Repository.UserRepository;
 import com.Wanderlust.Service.ItineraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,12 @@ public class ItineraryServiceImpl implements ItineraryService {
 
     private final ItineraryRepository itineraryRepository;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public ItineraryServiceImpl(ItineraryRepository itineraryRepository) {
+    public ItineraryServiceImpl(ItineraryRepository itineraryRepository, UserRepository userRepository) {
         this.itineraryRepository = itineraryRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -27,14 +32,17 @@ public class ItineraryServiceImpl implements ItineraryService {
      * @throws ItineraryException If the itinerary already exists.
      */
     @Override
-    public Itinerary createItinerary(Itinerary itinerary) {
+    public Itinerary createItinerary(Itinerary itinerary, String email) {
         if(itinerary==null){
             throw new ItineraryException("Itinerary cannot be null");
         }
-        if(itineraryRepository.existsById(itinerary.getItineraryID())){
-            throw new ItineraryException("Itinerary already exists");
-        }
+        if (userRepository.findByEmail(email).isPresent()) {
+            User user = userRepository.findByEmail(email).get();
+            itinerary.setUser(user);
 
+        } else {
+            throw new ItineraryException("User not found");
+        }
         return itineraryRepository.save(itinerary);
     }
 
@@ -42,6 +50,17 @@ public class ItineraryServiceImpl implements ItineraryService {
     public List<Itinerary> getAllItineraries() {
         if (itineraryRepository.findAll().isEmpty()) {
             throw new ItineraryException("No itineraries found");
+        }
+        return itineraryRepository.findAll();
+    }
+
+    @Override
+    public List<Itinerary> getAllItinerariesByUser(String email) {
+        if (userRepository.findByEmail(email).isPresent()) {
+            User user = userRepository.findByEmail(email).get();
+            List<Itinerary> itineraries = user.getItineraries();
+        } else {
+            throw new ItineraryException("User not found");
         }
         return itineraryRepository.findAll();
     }

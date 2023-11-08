@@ -10,11 +10,13 @@ import com.Wanderlust.Repository.UserRepository;
 import com.Wanderlust.Repository.WalletRepository;
 import com.Wanderlust.Service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class WalletServiceImpl implements WalletService {
 
     private final WalletRepository walletRepository;

@@ -11,4 +11,6 @@ public interface DestinationService {
     Destination updateDestination(Integer destinationId, Destination destination);
     String deleteDestination(Integer destinationId);
     Destination payAmountForDestination(Integer destinationId);
+    List<Destination> completeDestination();
+    List<Destination> incompleteDestination();
 }

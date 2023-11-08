@@ -5,31 +5,36 @@ import com.Wanderlust.Exception.ItineraryException;
 import com.Wanderlust.Exception.UserException;
 import com.Wanderlust.Model.*;
 import com.Wanderlust.Repository.DestinationRepository;
+import com.Wanderlust.Repository.ItineraryRepository;
 import com.Wanderlust.Repository.WalletRepository;
 import com.Wanderlust.Service.DestinationService;
 import com.Wanderlust.Service.ItineraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DestinationServiceImpl implements DestinationService {
 
     private final DestinationRepository destinationRepository;
-    private final ItineraryService itineraryService;
+    private final ItineraryRepository itineraryRepository;
 
     private final WalletRepository walletRepository;
 
     @Autowired
-    public DestinationServiceImpl(DestinationRepository destinationRepository, ItineraryService itineraryService, WalletRepository walletRepository) {
+    public DestinationServiceImpl(DestinationRepository destinationRepository, ItineraryRepository itineraryRepository, WalletRepository walletRepository) {
         this.destinationRepository = destinationRepository;
-        this.itineraryService = itineraryService;
+        this.itineraryRepository = itineraryRepository;
         this.walletRepository = walletRepository;
     }
 
     @Override
     public Destination createDestination(Destination destination, Integer itineraryId) {
-        Itinerary itinerary = itineraryService.getItineraryById(itineraryId);
+        Itinerary itinerary = itineraryRepository.findById(itineraryId)
+                .orElseThrow(() -> new ItineraryException("Itinerary not found"));
 
 
         if (itinerary == null) {
@@ -45,9 +50,14 @@ public class DestinationServiceImpl implements DestinationService {
         newDestination.setName(destination.getName());
         newDestination.setBudget(destination.getBudget());
         newDestination.setDescription(destination.getDescription());
+        newDestination.setCompletionStatus(CompletionStatus.INCOMPLETE);
+        itinerary.setDestination(newDestination);
 
         // Associate the destination with the retrieved itinerary
-        newDestination.getItineraries().add(itinerary);
+
+
+        itineraryRepository.save(itinerary);
+
         return destinationRepository.save(newDestination);
     }
 
@@ -113,7 +123,32 @@ public class DestinationServiceImpl implements DestinationService {
         wallet.getExpenses().add(expense);
         wallet.setBalance(wallet.getBalance() - existingDestination.getBudget());
 
+        existingDestination.setCompletionStatus(CompletionStatus.COMPLETED);
         walletRepository.save(wallet);
         return existingDestination;
+    }
+
+    @Override
+    public List<Destination> completeDestination() {
+        List<Destination> destinations = destinationRepository.findAll();
+        List<Destination> completedDestinations = new ArrayList<>();
+        for (Destination destination : destinations) {
+            if (destination.getCompletionStatus() == CompletionStatus.COMPLETED) {
+                completedDestinations.add(destination);
+            }
+        }
+        return completedDestinations;
+    }
+
+    @Override
+    public List<Destination> incompleteDestination() {
+        List<Destination> destinations = destinationRepository.findAll();
+        List<Destination> incompleteDestinations = new ArrayList<>();
+        for (Destination destination : destinations) {
+            if (destination.getCompletionStatus() == CompletionStatus.INCOMPLETE) {
+                incompleteDestinations.add(destination);
+            }
+        }
+        return incompleteDestinations;
     }
 }

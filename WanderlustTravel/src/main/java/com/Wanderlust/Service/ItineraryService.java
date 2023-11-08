@@ -5,9 +5,11 @@ import com.Wanderlust.Model.Itinerary;
 import java.util.List;
 
 public interface ItineraryService {
-    Itinerary createItinerary(Itinerary itinerary);
+    Itinerary createItinerary(Itinerary itinerary,String email);
 
     List<Itinerary> getAllItineraries();
+
+    List<Itinerary> getAllItinerariesByUser(String email);
 
     Itinerary getItineraryById(Integer itineraryId);
 
