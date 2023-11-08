@@ -1,40 +1,40 @@
-# Wanderlust Travel Planner
+# Wanderlust Application
 
-Welcome to the Wanderlust Travel Planner! This application is designed to help users manage their travel itineraries, destinations, and wallets effectively.
+Welcome to the Wanderlust application! This application is a travel management system designed to help users organize their travel plans effectively.
 
 ## Description
 
-Wanderlust is a comprehensive travel management system created to assist users in organizing their travel plans efficiently. It offers the capability to create itineraries, add destinations, manage the user wallet, and track travel expenses seamlessly.
+Wanderlust helps users manage their travel itineraries, destinations, and wallets. It offers various functionalities such as creating itineraries, adding destinations, tracking expenses, and managing the user wallet.
 
 ## Features
-
+- ** User Management**: Register, Retrieve, Update, Delete User Features.
 - **Itinerary Management**: Create, update, and delete itineraries.
 - **Destination Tracking**: Add destinations to itineraries and manage their completion status.
-- **Wallet Management**: Administer user wallets, add funds, and monitor expenses.
+- **Wallet Management**: Manage user wallet, add money, and track expenses.
 
 ## Installation
 
-To run the application locally, follow these steps:
+To install and run the application locally, follow these steps:
 
 1. Clone the repository.
 2. Navigate to the project directory.
-3. Execute `mvn clean install` to build the project.
-4. Start the application using `java -jar wanderlust.jar`.
+3. Run `mvn clean install` to build the project.
+4. Start the application by running `java -jar wanderlust.jar`.
 
 ## API Endpoints
 
 The Wanderlust application provides the following API endpoints:
 
-- `/itinerary`: Manages itineraries.
-- `/destination`: Handles destination management.
+- `/itineraries`: Manages itineraries.
+- `/destinations`: Handles destination management.
 - `/wallet`: Manages user wallets and expenses.
 
-The comprehensive API documentation can be accessed via Swagger UI or the API documentation file.
+For detailed API documentation, refer to Swagger UI or the API documentation file.
 
 ## Usage
 
-To interact with the Wanderlust application, you can utilize the provided API endpoints using tools like Postman or cURL.
+Interact with the Wanderlust application by using tools like Postman or cURL to access the provided API endpoints.
 
 Example:
 ```bash
-curl -X POST http://localhost:8080/wallet/add-money?email=user@example.com&amount=50.00
+curl -X POST http://localhost:8080/wallet/addMoney/johndoe@example.com/50.00
