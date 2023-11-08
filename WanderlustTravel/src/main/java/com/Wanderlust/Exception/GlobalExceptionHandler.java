@@ -54,6 +54,25 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
+    // Exception handler for ItineraryException
+    @ExceptionHandler(ItineraryException.class)
+    public ResponseEntity<ErrorDetails> itineraryExceptionHandler(ItineraryException ex, WebRequest req) {
+        ErrorDetails err = new ErrorDetails();
+        err.setTimeStamp(LocalDateTime.now());
+        err.setMessage(ex.getLocalizedMessage());
+        err.setDescription(req.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
+
+    // Exception handler for DestinationException
+    @ExceptionHandler(DestinationException.class)
+    public ResponseEntity<ErrorDetails> destinationExceptionHandler(DestinationException ex, WebRequest req) {
+        ErrorDetails err = new ErrorDetails();
+        err.setTimeStamp(LocalDateTime.now());
+        err.setMessage(ex.getLocalizedMessage());
+        err.setDescription(req.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
     // Exception handler for general exceptions
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetails> gereralExceptionHandler(Exception ex, WebRequest req) {

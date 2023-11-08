@@ -22,8 +22,8 @@ public class Expense {
     @DecimalMin("0.0")
     private Double amount;
     private String category;
-    private Float CurrentBalance;
+    private Double CurrentBalance;
     @Enumerated(EnumType.STRING)
-    private ExpenseType type;
+    private ExpenseType expenseType;
 
 }

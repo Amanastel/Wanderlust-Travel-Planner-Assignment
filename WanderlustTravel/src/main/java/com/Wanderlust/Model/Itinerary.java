@@ -22,6 +22,7 @@ public class Itinerary {
     private Date endDate;
     private String location;
     private String description;
+    private Double budget;
     @ManyToOne(cascade=CascadeType.ALL)
     private Destination destination;
     @ManyToOne

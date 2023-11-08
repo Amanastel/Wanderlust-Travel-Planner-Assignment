@@ -21,7 +21,9 @@ public class Destination {
     private String name;
     private String location;
     private String description;
-
+    private Double budget;
+    @Enumerated(EnumType.STRING)
+    private CompletionStatus completionStatus;
     @OneToMany(mappedBy = "destination")
     private List<Itinerary> itineraries;
 
