@@ -24,7 +24,7 @@ To install and run the application locally, follow these steps:
 ## API Endpoints
 
 The Wanderlust application provides the following API endpoints:
--`users`: Manages user
+- `/users`: Manages user
 - `/itineraries`: Manages itineraries.
 - `/destinations`: Handles destination management.
 - `/wallet`: Manages user wallets and expenses.
