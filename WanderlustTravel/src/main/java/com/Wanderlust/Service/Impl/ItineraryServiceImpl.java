@@ -7,6 +7,7 @@ import com.Wanderlust.Repository.UserRepository;
 import com.Wanderlust.Service.ItineraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class ItineraryServiceImpl implements ItineraryService {
      * @throws ItineraryException If the itinerary already exists.
      */
     @Override
+    @Transactional
     public Itinerary createItinerary(Itinerary itinerary, String email) {
         if(itinerary==null){
             throw new ItineraryException("Itinerary cannot be null");

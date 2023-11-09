@@ -11,6 +11,7 @@ import com.Wanderlust.Repository.WalletRepository;
 import com.Wanderlust.Service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,6 +39,7 @@ public class WalletServiceImpl implements WalletService {
      * @throws UserException If the user is not found.
      */
     @Override
+    @Transactional
     public Wallet addMoney(String email, Double amount) {
         Optional<User> u = userRepository.findByEmail(email);
         u.orElseThrow(() -> new UserException("User not found"));
@@ -84,6 +86,7 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
+    @Transactional
     public Wallet payRideBill(String email, Double bill) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserException("User not found"));
         Wallet wallet = user.getWallet();

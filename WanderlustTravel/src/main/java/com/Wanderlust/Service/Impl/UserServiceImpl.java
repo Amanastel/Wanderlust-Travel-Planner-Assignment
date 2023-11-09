@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
      * @throws UserException If the user is not found.
      */
     @Override
+    @Transactional
     public User updateUserDetailsByEmail(String email, User users) throws UserException {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserException("User not found"));
         user.setName(users.getName());

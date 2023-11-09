@@ -11,6 +11,7 @@ import com.Wanderlust.Service.DestinationService;
 import com.Wanderlust.Service.ItineraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
+    @Transactional
     public Destination createDestination(Destination destination, Integer itineraryId) {
         Itinerary itinerary = itineraryRepository.findById(itineraryId)
                 .orElseThrow(() -> new ItineraryException("Itinerary not found"));
@@ -77,6 +79,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
+    @Transactional
     public Destination updateDestination(Integer destinationId, Destination destination) {
         Destination existingDestination = destinationRepository.findById(destinationId)
                 .orElseThrow(() -> new DestinationException("Destination not found"));
@@ -100,6 +103,7 @@ public class DestinationServiceImpl implements DestinationService {
     }
 
     @Override
+    @Transactional
     public Destination payAmountForDestination(Integer destinationId) {
         Destination existingDestination = destinationRepository.findById(destinationId)
                 .orElseThrow(() -> new DestinationException("Destination not found"));
