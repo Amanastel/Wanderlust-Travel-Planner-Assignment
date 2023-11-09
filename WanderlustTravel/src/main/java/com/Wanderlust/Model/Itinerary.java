@@ -25,7 +25,6 @@ public class Itinerary {
     private String description;
     private Double budget;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JsonIgnore
     private Destination destination;
     @ManyToOne
     @JsonIgnore

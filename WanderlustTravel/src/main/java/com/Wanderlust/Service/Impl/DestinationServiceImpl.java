@@ -55,7 +55,8 @@ public class DestinationServiceImpl implements DestinationService {
         newDestination.setCompletionStatus(CompletionStatus.INCOMPLETE);
         itinerary.setDestination(newDestination);
 
-        // Associate the destination with the retrieved itinerary
+
+
 
 
         itineraryRepository.save(itinerary);

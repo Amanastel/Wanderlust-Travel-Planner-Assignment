@@ -2,6 +2,7 @@ package com.Wanderlust.Controller;
 
 import com.Wanderlust.Model.User;
 import com.Wanderlust.Service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

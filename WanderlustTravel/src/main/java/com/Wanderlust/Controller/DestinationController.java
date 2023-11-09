@@ -3,6 +3,7 @@ package com.Wanderlust.Controller;
 import com.Wanderlust.Exception.DestinationException;
 import com.Wanderlust.Model.Destination;
 import com.Wanderlust.Service.DestinationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class DestinationController {
     }
 
     @PostMapping("/create/{itineraryId}")
-    public ResponseEntity<Destination> createDestination(@RequestBody Destination destination, @PathVariable Integer itineraryId) {
+    public ResponseEntity<Destination> createDestination( @RequestBody Destination destination, @PathVariable Integer itineraryId) {
         try {
             Destination createdDestination = destinationService.createDestination(destination, itineraryId);
             return new ResponseEntity<>(createdDestination, HttpStatus.CREATED);

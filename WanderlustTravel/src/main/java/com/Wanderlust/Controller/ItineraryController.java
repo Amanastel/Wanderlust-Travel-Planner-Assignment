@@ -2,6 +2,7 @@ package com.Wanderlust.Controller;
 
 import com.Wanderlust.Model.Itinerary;
 import com.Wanderlust.Service.ItineraryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class ItineraryController {
     }
 
     @PostMapping("/create/{email}")
-    public ResponseEntity<Itinerary> createItinerary(@RequestBody Itinerary itinerary, @PathVariable String email) {
+    public ResponseEntity<Itinerary> createItinerary( @RequestBody Itinerary itinerary, @PathVariable String email) {
         Itinerary createdItinerary = itineraryService.createItinerary(itinerary, email);
         return new ResponseEntity<>(createdItinerary, HttpStatus.CREATED);
     }

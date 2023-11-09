@@ -3,6 +3,7 @@ package com.Wanderlust.Controller;
 import com.Wanderlust.Model.Expense;
 import com.Wanderlust.Model.Wallet;
 import com.Wanderlust.Service.WalletService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
