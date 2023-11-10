@@ -1,4 +1,4 @@
-# WTravel App
+# WanderlustTravel App
 
 WTravel is a web application that helps users manage their travel plans, including destinations, itineraries, expenses, and user accounts.
 
@@ -30,7 +30,7 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/wtravel-app.git
+   git clone https://github.com/Amanastel/Wanderlust-Travel-Planner-Assignment
    cd wtravel-app
 
 
@@ -42,7 +42,7 @@ Make sure you have the following installed on your machine:
 
 ```http
 GET /users
-
+```
 ## Contributing
 
 If you want to contribute to this project, follow these steps:
@@ -52,4 +52,3 @@ If you want to contribute to this project, follow these steps:
 3. Make your changes and commit them.
 4. Push to the forked repository.
 5. Create a pull request.
-
