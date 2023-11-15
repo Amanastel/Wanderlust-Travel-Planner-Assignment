@@ -1,40 +1,54 @@
-# Wanderlust Application
+# WanderlustTravel App
 
-Welcome to the Wanderlust application! This application is a travel management system designed to help users organize their travel plans effectively.
+WTravel is a web application that helps users manage their travel plans, including destinations, itineraries, expenses, and user accounts.
 
-## Description
+## Table of Contents
 
-Wanderlust helps users manage their travel itineraries, destinations, and wallets. It offers various functionalities such as creating itineraries, adding destinations, tracking expenses, and managing the user wallet.
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Managing Users](#managing-users)
+  - [Managing Destinations](#managing-destinations)
+  - [Managing Itineraries](#managing-itineraries)
+  - [Managing Expenses](#managing-expenses)
+- [Contributing](#contributing)
 
-## Features
-- ** User Management**: Register, Retrieve, Update, Delete User Features.
-- **Itinerary Management**: Create, update, and delete itineraries.
-- **Destination Tracking**: Add destinations to itineraries and manage their completion status.
-- **Wallet Management**: Manage user wallet, add money, and track expenses.
 
-## Installation
+## Getting Started
 
-To install and run the application locally, follow these steps:
+### Prerequisites
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Run `mvn clean install` to build the project.
-4. Start the application by running `java -jar wanderlust.jar`.
+Make sure you have the following installed on your machine:
 
-## API Endpoints
+- Python 3
+- Flask
+- MySQL (or another database of your choice)
 
-The Wanderlust application provides the following API endpoints:
-- `/users`: Manages user
-- `/itineraries`: Manages itineraries.
-- `/destinations`: Handles destination management.
-- `/wallet`: Manages user wallets and expenses.
+### Installation
 
-For detailed API documentation, refer to Swagger UI or the API documentation file.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Amanastel/Wanderlust-Travel-Planner-Assignment
+   cd wtravel-app
+
 
 ## Usage
 
-Interact with the Wanderlust application by using tools like Postman or cURL to access the provided API endpoints.
+### Managing Users
 
-Example:
-```bash
-curl -X POST http://localhost:8080/wallet/addMoney/johndoe@example.com/50.00
+#### Get All Users
+
+```http
+GET /users
+```
+## Contributing
+
+If you want to contribute to this project, follow these steps:
+
+1. Fork the project.
+2. Create a new branch.
+3. Make your changes and commit them.
+4. Push to the forked repository.
+5. Create a pull request.
